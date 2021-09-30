@@ -1,3 +1,41 @@
 ID: COVID_STATISTICS
 _schema-version: '2.1'
 version: 0.0.1
+modules:
+  - name: cs_web
+    type: html5
+    path: cs_web
+    requires:
+      - name: uaa-service
+      - name: cs_core_xsjs_api
+        group: destinations
+        properties:
+          name: cs-core-xsjs-backend
+          url: '${url}'
+          forwardAuthToken: true
+  - name: cs_db
+    type: hdb
+    path: cs_db
+    requires:
+      - name: hdi_cs_db
+  - name: cs_core_xsjs
+    type: nodejs
+    path: cs_core_xsjs
+    provides:
+      - name: cs_core_xsjs_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: uaa-service
+      - name: hdi_cs_db
+      - name: cs_db
+resources:
+  - name: uaa-service
+    type: com.sap.xs.uaa-space
+  - name: hdi_cs_db
+    parameters:
+      config:
+        schema: CS_DB
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
