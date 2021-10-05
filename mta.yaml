@@ -11,7 +11,7 @@ modules:
         group: destinations
         properties:
           name: cs-core-xsjs-backend
-          url: '${url}'
+          url: '~{url}'
           forwardAuthToken: true
   - name: cs_db
     type: hdb
