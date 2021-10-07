@@ -1,0 +1,7 @@
+host = "api.covid19api.com";
+port = 80;
+proxyType = none;
+proxyHost = "proxy";
+proxyPort = 8080;
+authType = none;
+timeout = 0;
