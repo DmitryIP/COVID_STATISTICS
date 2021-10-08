@@ -1,0 +1,26 @@
+context covid_data {
+
+    /*@@layout{"layoutInfo":{"x":-730,"y":-364.5}}*/
+    entity Global {
+        NewConfirmed   : Integer;
+        TotalConfirmed : Integer;
+        NewDeaths      : Integer;
+        TotalDeaths    : Integer;
+        NewRecovered   : Integer;
+        TotalRecovered : Integer;
+        Date           : UTCDateTime;
+    };
+
+    /*@@layout{"layoutInfo":{"x":-468,"y":-365.5}}*/
+    entity Countries {
+            Country        : String(100);
+        key CountryCode    : String(2);
+            NewConfirmed   : Integer;
+            TotalConfirmed : Integer;
+            NewDeaths      : Integer;
+            TotalDeaths    : Integer;
+            NewRecovered   : Integer;
+            TotalRecovered : Integer;
+            Date           : UTCDateTime;
+    };
+};
