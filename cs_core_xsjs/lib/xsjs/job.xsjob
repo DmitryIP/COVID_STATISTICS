@@ -1,0 +1,9 @@
+{
+	"description": "Perform covid19 task",
+	"action": "xsjs:covid19.xsjs::getCovidData",
+	"schedules": [{
+		"description": "Perform my task every 1 hours", 
+		"xscron": "* * * * */1 0 0 ",
+		"parameter": {} 
+	}]
+}

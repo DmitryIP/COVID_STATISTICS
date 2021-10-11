@@ -1,3 +1,4 @@
+function getCovidData(){
 var dest = $.net.http.readDestination("covid19api");
 var client = new $.net.http.Client();
 var req = new $.web.WebRequest($.net.http.GET, "/summary");
@@ -5,6 +6,8 @@ client.request(req, dest);
 var response = client.getResponse();
 var JString = response.body.asString();
 var aString = JSON.parse(JString);
+
+var ts = new Date().toISOString();
 
 if (aString.Global.length !== 0) {
 try {
@@ -24,9 +27,9 @@ pstmt.executeBatch();
 pstmt.close();
 connection.commit();
 connection.close();
-$.response.setBody("Data Global uploaded successfully");
+console.log("Data Global uploaded successfully " + ts);
 } catch (e) {
-$.response.setBody(e.message);
+console.log(e.message);
 }
 }
 if (aString.Countries.length !== 0) {
@@ -53,9 +56,10 @@ arrCountries.forEach(function(elem, index){
 pstmt.close();
 connection.commit();
 connection.close();
-$.response.setBody("Data Countries uploaded successfully");
+console.log("Data Countries uploaded successfully " + ts);
 } catch (e) {
-$.response.setBody(e.message);
+console.log(e.message);
+}
 }
 }
 
@@ -69,7 +73,7 @@ $.response.setBody(e.message);
 // 	var row = [elem.Country, elem.CountryCode, elem.NewConfirmed, elem.TotalConfirmed, elem.NewDeaths, elem.TotalDeaths, elem.NewRecovered, elem.TotalRecovered, elem.Date];
 // 	argsArr.push(row);
 // });
-// connection.executeUpdate('Insert into "covid_data.Countries" values(?,?,?,?,?,?,?,?,?)', argsArr);
+// connection.executeUpdate('Insert into "covid_data.Countries" values(?,?,?,?,?,?,?,?,?)', argsArr); //UPSERT doesn't work
 // connection.commit();
 // connection.close();
 // $.response.setBody("Data Countries uploaded successfully");
