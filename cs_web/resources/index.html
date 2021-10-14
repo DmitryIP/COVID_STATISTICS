@@ -5,24 +5,32 @@
 <meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
 <title>cs_web</title>
 <!-- 1.) Load SAPUI5 (from a remote server), select theme and control library -->
-<script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
-	id="sap-ui-bootstrap" data-sap-ui-libs="sap.m"
+<!--<script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"-->
+<!--	id="sap-ui-bootstrap" data-sap-ui-libs="sap.m"-->
+<!--	data-sap-ui-theme="sap_bluecrystal">-->
+<!--		</script>-->
+		<script 
+	src="{{{sapui5_sb.url}}}/resources/sap-ui-core.js"
+	id="sap-ui-bootstrap" 
+	data-sap-ui-libs="sap.m, sap.ui.table"
 	data-sap-ui-theme="sap_bluecrystal">
-		</script>
-<!-- 2.) Create a UI5 button and place it onto the page -->
+</script>
+<!-- my script -->
 <script>
-	// create the button instance
-	var myButton = new sap.m.Button("btn");
-
-	// set properties, e.g. the text (there is also a shorter way of setting several properties)
-	myButton.setText("Hello World!");
-
-	// attach an action to the button's "press" event (use jQuery to fade out the button)
-	myButton.attachPress(function(){$("#btn").fadeOut()});
-
-	// place the button into the HTML element defined below
-	myButton.placeAt("uiArea");
-	</script>
+	var oModel = new sap.ui.model.odata.v2.ODataModel("xsodata/covid19summary.xsodata", true);
+	var oTable = new sap.ui.table.Table({ title: "Covid 19 summary" });
+	oTable.addColumn(new sap.ui.table.Column({ label: "Date", template: "Date"}));
+	oTable.addColumn(new sap.ui.table.Column({ label: "Country", template: "Country"}));
+	oTable.addColumn(new sap.ui.table.Column({ label: "NewConfirmed", template: "NewConfirmed"}));
+	oTable.addColumn(new sap.ui.table.Column({ label: "TotalConfirmed", template: "TotalConfirmed"}));
+	oTable.addColumn(new sap.ui.table.Column({ label: "NewDeaths", template: "NewDeaths"}));
+	oTable.addColumn(new sap.ui.table.Column({ label: "TotalDeaths", template: "TotalDeaths"}));
+	oTable.addColumn(new sap.ui.table.Column({ label: "NewRecovered", template: "NewRecovered"}));
+	oTable.addColumn(new sap.ui.table.Column({ label: "TotalRecovered", template: "TotalRecovered"}));
+	oTable.setModel(oModel);
+	oTable.bindRows("/summary");
+	oTable.placeAt("uiArea");
+</script>
 </head>
 <body class="sapUiBody">
 	<!-- This is where you place the UI5 button -->
