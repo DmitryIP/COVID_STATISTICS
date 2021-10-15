@@ -3,7 +3,7 @@
 	"action": "xsjs:getCovidData.xsjs::getDataFromAPI",
 	"schedules": [{
 		"description": "Perform my task every 2 hours", 
-		"xscron": "* * * * * * */30 ",
+		"xscron": "* * * * */2 0 0 ",
 		"parameter": {} 
 	}]
 }
