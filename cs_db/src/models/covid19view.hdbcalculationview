@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="covid19view" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="covid19view"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="covid_data.Countries">
+    <resourceUri>covid_data.Countries</resourceUri>
+  </DataSource>
+  <DataSource id="covid_data.Global">
+    <resourceUri>covid_data.Global</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="Date"/>
+      <viewAttribute id="Country"/>
+      <viewAttribute id="CountryCode"/>
+      <viewAttribute id="NewConfirmed"/>
+      <viewAttribute id="TotalConfirmed"/>
+      <viewAttribute id="NewDeaths"/>
+      <viewAttribute id="TotalDeaths"/>
+      <viewAttribute id="NewRecovered"/>
+      <viewAttribute id="TotalRecovered"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Global_projection">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Date" source="Date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CountryCode" null="true" value=""/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NewConfirmed" source="NewConfirmed"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TotalConfirmed" source="TotalConfirmed"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NewDeaths" source="NewDeaths"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TotalDeaths" source="TotalDeaths"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NewRecovered" source="NewRecovered"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TotalRecovered" source="TotalRecovered"/>
+    </input>
+    <input node="covid_data.Countries">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Date" source="Date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryCode" source="CountryCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NewConfirmed" source="NewConfirmed"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TotalConfirmed" source="TotalConfirmed"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NewDeaths" source="NewDeaths"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TotalDeaths" source="TotalDeaths"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NewRecovered" source="NewRecovered"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TotalRecovered" source="TotalRecovered"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Global_projection">
+    <viewAttributes>
+      <viewAttribute id="Date"/>
+      <viewAttribute id="NewConfirmed"/>
+      <viewAttribute id="TotalConfirmed"/>
+      <viewAttribute id="NewDeaths"/>
+      <viewAttribute id="TotalDeaths"/>
+      <viewAttribute id="NewRecovered"/>
+      <viewAttribute id="TotalRecovered"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="Country" datatype="NVARCHAR" length="100" expressionLanguage="SQL">
+        <formula>'All countries'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="covid_data.Global"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="Date" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Date"/>
+      <keyMapping columnObjectName="Union_1" columnName="Date"/>
+    </attribute>
+    <attribute id="Country" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Country"/>
+      <keyMapping columnObjectName="Union_1" columnName="Country"/>
+    </attribute>
+    <attribute id="CountryCode" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CountryCode"/>
+      <keyMapping columnObjectName="Union_1" columnName="CountryCode"/>
+    </attribute>
+    <attribute id="NewConfirmed" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NewConfirmed"/>
+      <keyMapping columnObjectName="Union_1" columnName="NewConfirmed"/>
+    </attribute>
+    <attribute id="TotalConfirmed" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TotalConfirmed"/>
+      <keyMapping columnObjectName="Union_1" columnName="TotalConfirmed"/>
+    </attribute>
+    <attribute id="NewDeaths" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NewDeaths"/>
+      <keyMapping columnObjectName="Union_1" columnName="NewDeaths"/>
+    </attribute>
+    <attribute id="TotalDeaths" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TotalDeaths"/>
+      <keyMapping columnObjectName="Union_1" columnName="TotalDeaths"/>
+    </attribute>
+    <attribute id="NewRecovered" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NewRecovered"/>
+      <keyMapping columnObjectName="Union_1" columnName="NewRecovered"/>
+    </attribute>
+    <attribute id="TotalRecovered" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TotalRecovered"/>
+      <keyMapping columnObjectName="Union_1" columnName="TotalRecovered"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="204"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Global_projection" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="334"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

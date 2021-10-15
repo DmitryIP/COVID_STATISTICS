@@ -13,6 +13,7 @@ modules:
           name: cs-core-xsjs-backend
           url: '~{url}'
           forwardAuthToken: true
+      - name: ui5
   - name: cs_db
     type: hdb
     path: cs_db
@@ -30,6 +31,7 @@ modules:
       - name: hdi_cs_db
       - name: cs_db
       - name: covid19api
+      - name: covid_scheduler
 resources:
   - name: uaa-service
     type: com.sap.xs.uaa-space
@@ -46,3 +48,10 @@ resources:
       service-name: covid19api
     properties:
       covid19api_service: '${service-name}'
+  - name: covid_scheduler
+    type: com.sap.xs.job-scheduler
+  - name: ui5
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: sapui5_sb
+      service-plan: sapui5-1.60

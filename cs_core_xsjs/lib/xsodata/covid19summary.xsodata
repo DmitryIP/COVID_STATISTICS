@@ -1,0 +1,3 @@
+service{
+"covid19view" as "summary" keys generate local "ID";
+}
