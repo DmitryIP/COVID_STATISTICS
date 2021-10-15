@@ -28,6 +28,7 @@ function getDataFromAPI() {
 			pstmt.close();
 			connection.commit();
 			connection.close();
+			console.log("Data Global uploaded successfully " );
 		} catch (e) {
 			throw e;
 		}
@@ -57,6 +58,7 @@ function getDataFromAPI() {
 			pstmt.close();
 			connection.commit();
 			connection.close();
+			console.log("Data Countries uploaded successfully ");
 		} catch (e) {
 			throw e;
 		}
