@@ -6,14 +6,14 @@ modules:
     type: html5
     path: cs_web
     requires:
-      - name: uaa-service
+      - name: cs-uaa-service
       - name: cs_core_xsjs_api
         group: destinations
         properties:
           name: cs-core-xsjs-backend
           url: '~{url}'
           forwardAuthToken: true
-      - name: ui5
+      - name: cs-ui5
   - name: cs_db
     type: hdb
     path: cs_db
@@ -27,13 +27,13 @@ modules:
         properties:
           url: '${default-url}'
     requires:
-      - name: uaa-service
+      - name: cs-uaa-service
       - name: hdi_cs_db
       - name: cs_db
       - name: covid19api
       - name: covid_scheduler
 resources:
-  - name: uaa-service
+  - name: cs-uaa-service
     type: com.sap.xs.uaa-space
   - name: hdi_cs_db
     parameters:
@@ -50,7 +50,7 @@ resources:
       covid19api_service: '${service-name}'
   - name: covid_scheduler
     type: com.sap.xs.job-scheduler
-  - name: ui5
+  - name: cs-ui5
     type: org.cloudfoundry.managed-service
     parameters:
       service: sapui5_sb
