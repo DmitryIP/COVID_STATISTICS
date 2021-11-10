@@ -28,6 +28,7 @@ function getDataFromAPI() {
 			pstmt.close();
 			connection.commit();
 			connection.close();
+			// eslint-disable-next-line
 			console.log("Data Global uploaded successfully " );
 		} catch (e) {
 			throw e;
@@ -58,6 +59,7 @@ function getDataFromAPI() {
 			pstmt.close();
 			connection.commit();
 			connection.close();
+			// eslint-disable-next-line
 			console.log("Data Countries uploaded successfully ");
 		} catch (e) {
 			throw e;
