@@ -1,0 +1,45 @@
+{
+  "role": {
+    "name": "admin_g#",
+    "object_privileges": [
+      {
+        "name": "covid_data.Global",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "DELETE",
+          "INSERT",
+          "SELECT",
+          "UPDATE"
+        ]
+      },
+      {
+        "name": "covid_data.Countries",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "DELETE",
+          "INSERT",
+          "UPDATE",
+          "SELECT"
+        ]
+      },
+      {
+        "name": "covid19view",
+        "type": "VIEW",
+        "privileges_with_grant_option": [
+          "SELECT"
+        ]
+      }
+    ],
+    "schema_privileges": [
+      {
+        "privileges_with_grant_option": [
+          "EXECUTE",
+          "INSERT",
+          "SELECT",
+          "DELETE",
+          "SELECT CDS METADATA"
+        ]
+      }
+    ]
+  }
+}

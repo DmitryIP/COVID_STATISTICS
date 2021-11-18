@@ -1,0 +1,7 @@
+{
+  "admin": {
+    "ref": {
+      "schema": "DB_CS"
+    }
+  }
+}
